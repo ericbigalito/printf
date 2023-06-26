@@ -15,6 +15,11 @@ int parse_string(va_list args);
 int parse_dec(va_list args);
 int parse_int(va_list args);
 int parse_percent(va_list args);
+int parse_binary(va_list args);
+int parse_octal(va_list args);
+int parse_unsigned(va_list args);
+int parse_hex(va_list args);
+int parse_HEX(va_list args);
 
 /**
  * _printf - 

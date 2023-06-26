@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdarg.h>
-#include <stdio.h>
 
 int parse_char(va_list args)
 {
@@ -68,6 +67,7 @@ int parse_dec(va_list args)
         _putchar(s[j--]);
 	}
 
+	free(s);
 	return (i);
 }
 
@@ -100,6 +100,8 @@ int parse_int(va_list args)
     {    
 		_putchar(s[j--]);
 	}
+	
+	free(s);
 	
 	return (i);
 }

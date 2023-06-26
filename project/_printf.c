@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdarg.h>
-#include <stdio.h>
 
 int _printf(const char *format, ...)
 {
@@ -30,7 +29,11 @@ int _printf(const char *format, ...)
 				}
 			}
 			if (!f)
-				_putchar('0');
+			{
+				_putchar('%');
+				_putchar(*(format + 1));
+				printedc += 2;
+			}	
 			format++;
 		}
 		format++;
@@ -46,11 +49,11 @@ int (*printf_parser(char c))(va_list)
 
 	printf_parse_t parse_table[] =
 	{
-		{'c', parse_char},
-		{'s', parse_string},
-		{'d', parse_dec},
-		{'i', parse_int},
-		{'%', parse_percent},
+		{'c', parse_char}, {'s', parse_string},
+		{'d', parse_dec}, {'i', parse_int},
+		{'%', parse_percent}, {'b', parse_binary},
+		{'o', parse_octal}, {'u', parse_unsigned},
+		{'x', parse_hex}, {'X', parse_HEX}, 
 		{'\0', NULL}
 	};
 
