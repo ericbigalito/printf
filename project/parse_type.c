@@ -16,12 +16,18 @@ int parse_string(va_list args)
 {
     int i = 0;
 	char *s;
+
 	s = va_arg(args, char *);
+	
 	if (!s)
 		return (-1);
+	
 	while (*s != '\0')
-		_putchar(s[i++]);
-
+	{
+		_putchar(*s);
+		i++;
+		s++;
+	}
 	return (i);
 }
 
@@ -100,8 +106,7 @@ int parse_int(va_list args)
 
 int parse_percent(va_list args)
 {
-    char c;
-	c = va_arg(args, int);
-	_putchar(c);
+    JUNK(args);
+	_putchar('%');
 	return (1);
 }

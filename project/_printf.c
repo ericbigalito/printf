@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			for (j = 1; *(format + j) != '%'; j++)
+			for (j = 1; *(format + j) != '\0'; j++)
 			{
 				f = printf_parser(*(format + j));
 				if (f)
