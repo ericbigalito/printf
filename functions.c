@@ -3,35 +3,34 @@
 /************************* PRINT CHAR *************************/
 
 /**
- * printChar - Prints a character
- * @types: List of arguments
- * @buffer: Buffer array to handle printing
- * @flags: Calculates active flags
+ * print_char - Prints a char
+ * @types: List a of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
  * @width: Width
  * @precision: Precision specification
  * @size: Size specifier
- * Return: Number of characters printed
+ * Return: Number of chars printed
  */
-int printChar(va_list types, char buffer[],
+int print_char(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	char c = va_arg(types, int);
 
-	return (handleWriteChar(c, buffer, flags, width, precision, size));
+	return (handle_write_char(c, buffer, flags, width, precision, size));
 }
-
-/************************* PRINT STRING *************************/
+/************************* PRINT A STRING *************************/
 /**
- * printString - Prints a string
- * @types: List of arguments
- * @buffer: Buffer array to handle printing
- * @flags: Calculates active flags
- * @width: Width
+ * print_string - Prints a string
+ * @types: List a of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width.
  * @precision: Precision specification
  * @size: Size specifier
- * Return: Number of characters printed
+ * Return: Number of chars printed
  */
-int printString(va_list types, char buffer[],
+int print_string(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	int length = 0, i;
@@ -42,7 +41,6 @@ int printString(va_list types, char buffer[],
 	UNUSED(width);
 	UNUSED(precision);
 	UNUSED(size);
-
 	if (str == NULL)
 	{
 		str = "(null)";
@@ -76,19 +74,18 @@ int printString(va_list types, char buffer[],
 
 	return (write(1, str, length));
 }
-
 /************************* PRINT PERCENT SIGN *************************/
 /**
- * printPercent - Prints a percent sign
- * @types: List of arguments
- * @buffer: Buffer array to handle printing
- * @flags: Calculates active flags
- * @width: Width
+ * print_percent - Prints a percent sign
+ * @types: Lista of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width.
  * @precision: Precision specification
  * @size: Size specifier
- * Return: Number of characters printed
+ * Return: Number of chars printed
  */
-int printPercent(va_list types, char buffer[],
+int print_percent(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	UNUSED(types);
@@ -102,24 +99,24 @@ int printPercent(va_list types, char buffer[],
 
 /************************* PRINT INT *************************/
 /**
- * printInt - Prints an integer
- * @types: List of arguments
- * @buffer: Buffer array to handle printing
- * @flags: Calculates active flags
- * @width: Width
+ * print_int - Print int
+ * @types: Lista of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width.
  * @precision: Precision specification
  * @size: Size specifier
- * Return: Number of characters printed
+ * Return: Number of chars printed
  */
-int printInt(va_list types, char buffer[],
+int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	int i = BUFF_SIZE - 2;
-	int isNegative = 0;
+	int is_negative = 0;
 	long int n = va_arg(types, long int);
 	unsigned long int num;
 
-	n = convertSizeNumber(n, size);
+	n = convert_size_number(n, size);
 
 	if (n == 0)
 		buffer[i--] = '0';
@@ -130,7 +127,7 @@ int printInt(va_list types, char buffer[],
 	if (n < 0)
 	{
 		num = (unsigned long int)((-1) * n);
-		isNegative = 1;
+		is_negative = 1;
 	}
 
 	while (num > 0)
@@ -141,21 +138,21 @@ int printInt(va_list types, char buffer[],
 
 	i++;
 
-	return (writeNumber(isNegative, i, buffer, flags, width, precision, size));
+	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 
 /************************* PRINT BINARY *************************/
 /**
- * printBinary - Prints an unsigned number in binary format
- * @types: List of arguments
- * @buffer: Buffer array to handle printing
- * @flags: Calculates active flags
- * @width: Width
+ * print_binary - Prints an unsigned number
+ * @types: Lista of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width.
  * @precision: Precision specification
  * @size: Size specifier
- * Return: Number of characters printed
+ * Return: Numbers of char printed.
  */
-int printBinary(va_list types, char buffer[],
+int print_binary(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	unsigned int n, m, i, sum;
@@ -189,4 +186,5 @@ int printBinary(va_list types, char buffer[],
 	}
 	return (count);
 }
+
 
