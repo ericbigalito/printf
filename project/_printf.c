@@ -1,6 +1,12 @@
 #include "main.h"
 #include <stdarg.h>
 
+/**
+ * _printf - print anything
+ * @format: const char pointer 
+ * 
+ * Return: int
+ */
 int _printf(const char *format, ...)
 {
     int (*f)(va_list), j, printedc = 0;
@@ -43,6 +49,11 @@ int _printf(const char *format, ...)
 	return (printedc);
 }
 
+/**
+ * printf_parser - parse printf string
+ * @c: char
+ * Return: int 
+ */
 int (*printf_parser(char c))(va_list)
 {
 	int i;

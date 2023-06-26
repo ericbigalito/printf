@@ -1,6 +1,11 @@
 #include "main.h"
 #include <stdarg.h>
 
+/**
+ * parse_binary - parse binary
+ * @args: va_list
+ * Return: int
+ */
 int parse_binary(va_list args)
 {
     int num = va_arg(args, int);
@@ -36,6 +41,11 @@ int parse_binary(va_list args)
 	return (i);
 }
 
+/**
+ * parse_octal - parse octal
+ * @args: va_list
+ * Return: int
+ */
 int parse_octal(va_list args)
 {
     unsigned int num = va_arg(args, unsigned int);
@@ -71,6 +81,11 @@ int parse_octal(va_list args)
     return (i);
 }
 
+/**
+ * parse_unsigned - parse unsigned
+ * @args: va_list
+ * Return: int
+ */
 int parse_unsigned(va_list args)
 {
     unsigned int num = va_arg(args, unsigned int);
@@ -106,6 +121,12 @@ int parse_unsigned(va_list args)
 	return (i);
 }
 
+/**
+ * parse_hex - parse hexadecimal
+ * @args: va_list
+ * Return: int
+ */
+
 int parse_hex(va_list args)
 {
     unsigned int h, i, j, num, size;
@@ -126,6 +147,11 @@ int parse_hex(va_list args)
     return (j);
 }
 
+/**
+ * parse_HEX - parse hexadecimal capital
+ * @args: va_list
+ * Return: int
+ */
 int parse_HEX(va_list args)
 {
     unsigned int h, i, j, num, size;

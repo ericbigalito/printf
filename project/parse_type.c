@@ -1,6 +1,11 @@
 #include "main.h"
 #include <stdarg.h>
 
+/**
+ * parse_char - parse char 
+ * @args: va_list
+ * Return: int
+ */
 int parse_char(va_list args)
 {
 	char c;
@@ -11,6 +16,11 @@ int parse_char(va_list args)
 	return (1);
 }
 
+/**
+ * parse_string - parse string
+ * @args: va_list
+ * Return: int
+ */
 int parse_string(va_list args)
 {
     int i = 0;
@@ -30,6 +40,11 @@ int parse_string(va_list args)
 	return (i);
 }
 
+/**
+ * parse_dec - parse decimal
+ * @args: va_list
+ * Return: int
+ */
 int parse_dec(va_list args)
 {
     int num = va_arg(args, int);
@@ -71,6 +86,11 @@ int parse_dec(va_list args)
 	return (i);
 }
 
+/**
+ * parse_int - parse int
+ * @args: va_list
+ * Return: int
+ */
 int parse_int(va_list args)
 {
     int num = va_arg(args, int);
@@ -100,12 +120,17 @@ int parse_int(va_list args)
     {    
 		_putchar(s[j--]);
 	}
-	
+
 	free(s);
 	
 	return (i);
 }
 
+/**
+ * parse_percent - parse percent
+ * @args: va_list
+ * Return: int
+ */
 int parse_percent(va_list args)
 {
     JUNK(args);
