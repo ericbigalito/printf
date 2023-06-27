@@ -1,67 +1,82 @@
 #include "main.h"
-
-void print_buffer(char buffer[], int *buff_ind);
+#include <stdarg.h>
 
 /**
- * _printf - Printf function
- * @format: format.
- * Return: Printed chars.
+ * _printf - print anything
+ * @format: const char pointer 
+ * 
+ * Return: int
  */
 int _printf(const char *format, ...)
 {
-	int i, printed = 0, printed_chars = 0;
-	int flags, width, precision, size, buff_ind = 0;
-	va_list list;
-	char buffer[BUFF_SIZE];
-
-	if (format == NULL)
-		return (-1);
-
-	va_start(list, format);
-
-	for (i = 0; format && format[i] != '\0'; i++)
-	{
-		if (format[i] != '%')
-		{
-			buffer[buff_ind++] = format[i];
-			if (buff_ind == BUFF_SIZE)
-				print_buffer(buffer, &buff_ind);
-			/* write(1, &format[i], 1);*/
-			printed_chars++;
+    int (*f)(va_list), j, printedc = 0;
+	va_list ptr;
+	
+	if (!format)
+        return (-1);
+	
+	va_start(ptr, format);
+    while (*format != '\0')
+    {
+		if (*format != '%')
+        {
+			_putchar(*format);
+			printedc++;
 		}
 		else
 		{
-			print_buffer(buffer, &buff_ind);
-			flags = get_flags(format, &i);
-			width = get_width(format, &i, list);
-			precision = get_precision(format, &i, list);
-			size = get_size(format, &i);
-			++i;
-			printed = handle_print(format, &i, list, buffer,
-				flags, width, precision, size);
-			if (printed == -1)
-				return (-1);
-			printed_chars += printed;
+			for (j = 1; *(format + j) != '\0'; j++)
+			{
+				f = printf_parser(*(format + j));
+				if (f)
+				{
+					printedc += f(ptr);
+					break;
+				}
+			}
+			if (!f)
+			{
+				_putchar('%');
+				_putchar(*(format + 1));
+				printedc += 2;
+			}	
+			format++;
 		}
-	}
-
-	print_buffer(buffer, &buff_ind);
-
-	va_end(list);
-
-	return (printed_chars);
+		format++;
+    }
+	/** printf("%d\n", printedc); **/
+	va_end(ptr);
+	return (printedc);
 }
 
 /**
- * print_buffer - Prints the contents of the buffer if it exist
- * @buffer: Array of chars
- * @buff_ind: Index at which to add next char, represents the length.
+ * printf_parser - parse printf string
+ * @c: char
+ * Return: int 
  */
-void print_buffer(char buffer[], int *buff_ind)
+int (*printf_parser(char c))(va_list)
 {
-	if (*buff_ind > 0)
-		write(1, &buffer[0], *buff_ind);
+	int i;
 
-	*buff_ind = 0;
+	printf_parse_t parse_table[] =
+	{
+		{'c', parse_char}, {'s', parse_string},
+		{'d', parse_dec}, {'i', parse_int},
+		{'%', parse_percent}, {'b', parse_binary},
+		{'o', parse_octal}, {'u', parse_unsigned},
+		{'x', parse_hex}, {'X', parse_HEX}, 
+		{'\0', NULL}
+	};
+
+	if (!c)
+		return (NULL);
+
+
+	for (i = 0; parse_table[i].c != '\0'; i++)
+	{
+		if (parse_table[i].c == c)
+			return parse_table[i].parse_func;	
+	}
+
+	return (NULL);
 }
-
