@@ -4,20 +4,25 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-typedef struct printf_parse {
+/**
+ * printf_parse - struct
+ */
+typedef struct printf_parse
+{
 	char c;
 	int (*parse_func)(va_list);
- } printf_parse_t;
+} printf_parse_t;
 
 /**
  * printf_parser - printf parsing function
  * @c: char
+ * va_list
  * Return: int
  */
 int (*printf_parser(char c))(va_list);
 
 /**
- * parse_char - parse char 
+ * parse_char - parse char
  * @args: va_list
  * Return: int
  */
@@ -103,7 +108,7 @@ void _puts(char *str);
 /**
  * _putchar - print a character
  * @c: char
- * Return: void 
+ * Return: void
  */
 void _putchar(char c);
 

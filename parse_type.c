@@ -2,14 +2,16 @@
 #include <stdarg.h>
 
 /**
- * parse_char - parse char 
+ * parse_char - parse char
  * @args: va_list
  * Return: int
  */
 int parse_char(va_list args)
 {
 	char c;
+
 	c = va_arg(args, int);
+
 	if (!c)
 		return (-1);
 	_putchar(c);
@@ -23,14 +25,14 @@ int parse_char(va_list args)
  */
 int parse_string(va_list args)
 {
-    int i = 0;
+	int i = 0;
 	char *s;
 
 	s = va_arg(args, char *);
-	
+
 	if (!s)
 		return (-1);
-	
+
 	while (*s != '\0')
 	{
 		_putchar(*s);
@@ -47,7 +49,7 @@ int parse_string(va_list args)
  */
 int parse_dec(va_list args)
 {
-    int num = va_arg(args, int);
+	int num = va_arg(args, int);
 	int i = 0, j = 0;
 	char *s;
 
@@ -66,20 +68,20 @@ int parse_dec(va_list args)
 
 	s = malloc(sizeof(char) * 15);
 
-    if (!s)
-        return (-1);
+	if (!s)
+		return (-1);
 
-    while (num >= 10)
-    {
-        s[j++] = '0' + (num % 10);
-        num /= 10;
-    }
-    s[j] = '0' + num;
+	while (num >= 10)
+	{
+		s[j++] = '0' + (num % 10);
+		num /= 10;
+	}
+	s[j] = '0' + num;
 	i = j + 1;
 
-    while (j >= 0)
+	while (j >= 0)
 	{
-        _putchar(s[j--]);
+		_putchar(s[j--]);
 	}
 
 	free(s);
@@ -93,7 +95,7 @@ int parse_dec(va_list args)
  */
 int parse_int(va_list args)
 {
-    int num = va_arg(args, int);
+	int num = va_arg(args, int);
 	int i, j = 0;
 	char *s;
 
@@ -105,24 +107,24 @@ int parse_int(va_list args)
 
 	s = malloc(sizeof(char) * 15);
 
-    if (!s)
-        return (-1);
+	if (!s)
+		return (-1);
 
-    while (num >= 10)
-    {
-        s[j++] = '0' + (num % 10);
-        num /= 10;
-    }
-    s[j] = '0' + num;
+	while (num >= 10)
+	{
+		s[j++] = '0' + (num % 10);
+		num /= 10;
+	}
+	s[j] = '0' + num;
 	i = j + 1;
 
-    while (j >= 0)
-    {    
+	while (j >= 0)
+	{
 		_putchar(s[j--]);
 	}
 
 	free(s);
-	
+
 	return (i);
 }
 
@@ -133,7 +135,7 @@ int parse_int(va_list args)
  */
 int parse_percent(va_list args)
 {
-    JUNK(args);
+	JUNK(args);
 	_putchar('%');
 	return (1);
 }

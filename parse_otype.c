@@ -8,7 +8,7 @@
  */
 int parse_binary(va_list args)
 {
-    int num = va_arg(args, int);
+	int num = va_arg(args, int);
 	int i, j = 0;
 	char *s;
 
@@ -20,24 +20,25 @@ int parse_binary(va_list args)
 
 	s = malloc(sizeof(char) * 100);
 
-    if (!s)
-        return (-1);
+	if (!s)
+		return (-1);
 
-    while (num >= 2)
-    {
-        s[j++] = '0' + (num % 2);
-        num /= 2;
-    }
-    s[j] = '0' + num;
+	while (num >= 2)
+	{
+		s[j++] = '0' + (num % 2);
+		num /= 2;
+	}
+
+	s[j] = '0' + num;
 	i = j + 1;
 
-    while (j >= 0)
-    {    
+	while (j >= 0)
+	{
 		_putchar(s[j--]);
 	}
-    
+
 	free(s);
-	
+
 	return (i);
 }
 
@@ -48,9 +49,9 @@ int parse_binary(va_list args)
  */
 int parse_octal(va_list args)
 {
-    unsigned int num = va_arg(args, unsigned int);
-	int i, j = 0;
+	unsigned int num = va_arg(args, unsigned int);
 	char *s;
+	int i, j = 0;
 
 	if (!num)
 	{
@@ -60,25 +61,25 @@ int parse_octal(va_list args)
 
 	s = malloc(sizeof(char) * 100);
 
-    if (!s)
-        return (-1);
+	if (!s)
+		return (-1);
 
-    while (num >= 8)
-    {
-        s[j++] = '0' + (num % 8);
-        num /= 8;
-    }
-    s[j] = '0' + num;
+	while (num >= 8)
+	{
+		s[j++] = '0' + (num % 8);
+		num /= 8;
+	}
+	s[j] = '0' + num;
 	i = j + 1;
 
-    while (j >= 0)
-    {    
+	while (j >= 0)
+	{
 		_putchar(s[j--]);
 	}
-	
+
 	free(s);
-	
-    return (i);
+
+	return (i);
 }
 
 /**
@@ -88,7 +89,7 @@ int parse_octal(va_list args)
  */
 int parse_unsigned(va_list args)
 {
-    unsigned int num = va_arg(args, unsigned int);
+	unsigned int num = va_arg(args, unsigned int);
 	int i, j = 0;
 	char *s;
 
@@ -100,24 +101,24 @@ int parse_unsigned(va_list args)
 
 	s = malloc(sizeof(char) * 15);
 
-    if (!s)
-        return (-1);
+	if (!s)
+		return (-1);
 
-    while (num >= 10)
-    {
-        s[j++] = '0' + (num % 10);
-        num /= 10;
-    }
-    s[j] = '0' + num;
+	while (num >= 10)
+	{
+		s[j++] = '0' + (num % 10);
+		num /= 10;
+	}
+	s[j] = '0' + num;
 	i = j + 1;
 
-    while (j >= 0)
-    {    
+	while (j >= 0)
+	{
 		_putchar(s[j--]);
 	}
 
 	free(s);
-	
+
 	return (i);
 }
 
@@ -129,22 +130,22 @@ int parse_unsigned(va_list args)
 
 int parse_hex(va_list args)
 {
-    unsigned int h, i, j, num, size;
-    char hc;
-    
-    size = sizeof(num) * 2;
+	unsigned int h, i, j, num, size;
+	char hc;
 
-    j = 0;
-    num = va_arg(args, unsigned int);
-    for (i = 0; i < size; i++) 
-    {
-        h = (num >> ((size - i - 1) * 4)) & 0xf;
-        hc = h < 10 ? '0' + h : 'a' + (h - 10);
-        _putchar(hc);
-        j++;
-    }
+	size = sizeof(num) * 2;
 
-    return (j);
+	j = 0;
+	num = va_arg(args, unsigned int);
+	for (i = 0; i < size; i++)
+	{
+		h = (num >> ((size - i - 1) * 4)) & 0xf;
+		hc = h < 10 ? '0' + h : 'a' + (h - 10);
+		_putchar(hc);
+		j++;
+	}
+
+	return (j);
 }
 
 /**
@@ -154,20 +155,21 @@ int parse_hex(va_list args)
  */
 int parse_HEX(va_list args)
 {
-    unsigned int h, i, j, num, size;
-    char hc;
-    
-    size = sizeof(num) * 2;
+	unsigned int h, i, j, num, size;
+	char hc;
 
-    j = 0;
-    num = va_arg(args, unsigned int);
-    for (i = 0; i < size; i++) 
-    {
-        h = (num >> ((size - i - 1) * 4)) & 0xF;
-        hc = h < 10 ? '0' + h : 'A' + (h - 10);
-        _putchar(hc);
-        j++;
-    }
+	num = va_arg(args, unsigned int);
+	size = sizeof(num) * 2;
 
-    return (j);
+	j = 0;
+	for (i = 0; i < size; i++)
+	{
+		h = (num >> ((size - i - 1) * 4)) & 0xF;
+		hc = h < 10 ? '0' + h : 'A' + (h - 10);
+		_putchar(hc);
+		 j++;
+	}
+
+	return (j);
 }
+
